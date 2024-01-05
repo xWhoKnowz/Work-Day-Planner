@@ -4,21 +4,18 @@
 
 var current = dayjs()
 var arrayIndex = 0
-var hourBlock = [
-  
-]
+var hourBlock = [ ]
+var timeBlock = $('.time-block')
 
-console.log(hourBlock);
-console.log(dayjs().format('hh;mm'));
+console.log(dayjs().format('H'));
+console.log($('.time-block'));
 
-// console.log($('.time-block').children('div').text());
 
-console.log($('id'));
-
-$("div").each(function(){
-  var divIds = $(this).attr('id')
+$(".time-block").each(function(){
+  var divIds = parseInt($(this).attr('id').split('-').pop())
   hourBlock.push(divIds)
 })
+console.log(hourBlock);
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
@@ -38,20 +35,23 @@ $(function () {
   // current hour in 24-hour time?
   //
 
-    if (dayjs().format('hhAM') > $('.time-block').children('div').text()) {
+    for (let i = 0; i < hourBlock.length; i++) {
+      if (dayjs().format('H') > hourBlock[i]) {
 
-      
+        timeBlock.addClass('.past')
 
-    } 
-    if (dayjs().format('hhAM') < $('.time-block').children('div').text()){
+      } 
+      else if (dayjs().format('H') < hourBlock[i]) {
 
+        timeBlock.addClass('.future')
 
+      }
+      else {
 
-    }
-    else {
+        timeBlock.addClass('.present')
 
-
-      
+      }  
+      console.log(hourBlock[i]);
     }
 
      
