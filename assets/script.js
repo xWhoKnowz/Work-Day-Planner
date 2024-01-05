@@ -3,20 +3,21 @@
 // in the html.
 
 var current = dayjs()
+var currentHour = parseInt(dayjs().format('H'))
 var arrayIndex = 0
-var hourBlock = [ ]
+var hourBlock = []
 var timeBlock = $('.time-block')
 
 console.log(dayjs().format('H'));
 console.log($('.time-block'));
 
 
-$(".time-block").each(function(){
+$(".time-block").each(function () {
   var divIds = parseInt($(this).attr('id').split('-').pop())
   hourBlock.push(divIds)
 })
 console.log(hourBlock);
-
+console.log(currentHour);
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -25,9 +26,10 @@ $(function () {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
-  
-  
-  
+
+
+
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -35,35 +37,27 @@ $(function () {
   // current hour in 24-hour time?
   //
 
-    for (let i = 0; i < hourBlock.length; i++) {
-      if (dayjs().format('H') > hourBlock[i]) {
-
-        timeBlock.addClass('.past')
-
-      } 
-      else if (dayjs().format('H') < hourBlock[i]) {
-
-        timeBlock.addClass('.future')
-
-      }
-      else {
-
-        timeBlock.addClass('.present')
-
-      }  
-      console.log(hourBlock[i]);
+  for (let i = 0; i < hourBlock.length; i++) {
+    if (currentHour === hourBlock[i]) {
+      $(timeBlock[i]).addClass('present')
     }
-
-     
+    else if (currentHour > hourBlock[i]) {
+      $(timeBlock[i]).addClass('past')
+    }
+    else {
+      $(timeBlock[i]).addClass('future')
+    }
+    console.log(hourBlock[i]);
+  }
 
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  
-  
-  
+
+
+
   // TODO: Add code to display the current date in the header of the page.
-  
+
   $('#currentDay').text(current.format('dddd, MMM DD YYYY'))
 });
