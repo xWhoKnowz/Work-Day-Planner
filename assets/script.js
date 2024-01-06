@@ -2,7 +2,7 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-var current = dayjs()
+var clock = $('#currentDay')
 var currentHour = parseInt(dayjs().format('H'))
 var arrayIndex = 0
 var hourBlock = []
@@ -78,6 +78,6 @@ $(function () {
   
   
   setInterval(function() {
-    $('#currentDay').text(current.format('dddd, MMM DD YYYY h:m:sA')) 
+    clock.text(dayjs().format('dddd, MMM DD YYYY h:m:sA')) 
 }, 1000)
 });
